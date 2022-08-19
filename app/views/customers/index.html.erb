@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Customers</h1>
+
+<div id="customers">
+<ul>
+
+  <% @customers.each do |customer| %>
+    <li>
+      <%= render customer %>
+      <p>
+        <%= link_to "Show this customer", customer %>
+      </p>
+    </li>
+  <% end %>
+
+</ul>
+</div>
+
+<%= link_to "New customer", new_customer_path %>
+<%= link_to "Back to Dashboard", root_path %>

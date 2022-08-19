@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  root "items#index"
+  resources :line_items
+  resources :stores
+
+  root 'welcome#index'
+  get "items/index"
+  get "customers/index"
   get "articles/index"
 
-  resources :articles do
-    resources :comments
-  end
   resources :items do
   end
+  resources :customers do
+  end
+  resources :sales do
+  end  
+  resources :articles do
+    resources :comments
+  end 
 end

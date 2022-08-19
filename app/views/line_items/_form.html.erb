@@ -1,0 +1,29 @@
+<%= form_with(model: line_item) do |form| %>
+  <% if line_item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(line_item.errors.count, "error") %> prohibited this line_item from being saved:</h2>
+
+      <ul>
+        <% line_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :item_id, style: "display: block" %>
+    <%= collection_select(:line_item, :item_id, @items, :id, :name) %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+    <%= form.number_field :sale_id, style: "display: none", value: @sale.id %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,15 +10,18 @@
   <% end %>
 </ul>
 
+<%= link_to "New Item", new_item_path %>
+
 <h2>Customers</h2>
 <p>List of current customers</p>
 <ul>
   <% @customers.each do |customer| %>
     <li>     
-      <p> <%= link_to customer.number, customer %> Items Bought: <%= customer.number%>, Loyalty : <%= customer.locaylty %></p>
+      <p> <%= link_to customer.id, customer %>, Loyalty : <%= customer.loyalty %></p>
     </li>
   <% end %>
 </ul>
 
-<%= link_to "New Item", new_customer_path %>
+<%= link_to "New Customer", new_customer_path %>
+
 <%= link_to "New Sale", new_sale_path %>

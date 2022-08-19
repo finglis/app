@@ -1,0 +1,43 @@
+<%= form_with(model: saleorm| %>
+  <% if sale.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sale.count, "error") %> prohibited this sale frsaleved:</h2>
+
+      <ul>
+        <% sale.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :customer_id, style: "display: block" %>
+    <% options = options_from_collection_for_select(@customers, 'id', 'number') %>
+    <%= form.select :all_val,  options %>
+  </div>
+
+  <div>
+    <%= form.label :line_item_id, style: "display: block" %>
+      <%= f.fields_for :line_item, line_item.new do |line_item_attributes|%>
+          <div>
+            <%= line_item_attributes.label :name, "Item Name" %>
+            <% options = options_from_collection_for_select(@items, 'id', 'name') %>
+            <%= line_item_attributes.select :all_val, options %>
+          </div>
+          <div>
+            <%= line_item_attributes.label :quantity, style: "display: block" %>
+            <%= line_item_attributes.number_field :quantity %>
+          </div>
+      <% end %>
+  </div>
+
+  <div>
+    <%= form.label :store_id, style: "display: block" %>
+    <%= form.text_field :store_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

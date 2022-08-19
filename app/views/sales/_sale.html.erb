@@ -1,0 +1,15 @@
+<div id="<%= dom_id sale %>">
+  <p>
+    <strong>Customer:</strong>
+    <%= sale.customer.number %>
+  </p>
+
+  <p>
+    <strong>Store:</strong>
+    <%= Store.find(sale.store_id).name %>
+  </p>
+
+    <% sale.line_items.each do |l| %>
+    <p><%= Item.find(l.item_id).name %> <%= l.quantity %> </p>
+    <% end %>
+</div>
