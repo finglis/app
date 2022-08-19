@@ -1,5 +1,17 @@
-<h1>Inventory</h1>
+<h1>Dashboard</h1>
+
+<h2>Inventory</h2>
 <p>List of items currently used at this store</p>
+<ul>
+  <% @items.each do |item| %>
+    <li>     
+      <p> <%= link_to item.name, item %> Price: <%= item.price%>, Quantity: <%= item.quantity %>, Offer: <%= item.offer %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Customers</h2>
+<p>List of current customers</p>
 <ul>
   <% @items.each do |item| %>
     <li>     

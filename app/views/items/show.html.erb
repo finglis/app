@@ -4,4 +4,12 @@
 <p>Quantity: <%= @item.quantity %></p>
 <p>Offer: <%= @item.offer %></p>
 
+<ul>
+  <li><%= link_to "Edit", edit_item_path(@item) %></li>
+  <li><%= link_to "Destroy", item_path(@item), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
 <%= link_to "Back to Inventory", root_path %>
