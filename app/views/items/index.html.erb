@@ -1,0 +1,11 @@
+<h1>Inventory</h1>
+<p>List of items currently used at this store</p>
+<ul>
+  <% @items.each do |item| %>
+    <li>     
+      <p> <%= link_to item.name, item %> Price: <%= item.price%>, Quantity: <%= item.quantity %>, Offer: <%= item.offer %></p>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Item", new_item_path %>
