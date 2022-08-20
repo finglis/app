@@ -10,6 +10,7 @@
   </p>
 
     <% sale.line_items.each do |l| %>
-    <p><%= Item.find(l.item_id).name %> <%= l.quantity %> </p>
+    <p><%= Item.find(l.item_id).name %> <%= l.quantity %> <%= l.total_price_at_sale_time %></p>
     <% end %>
+    total: <%= sale.total_price%>
 </div>

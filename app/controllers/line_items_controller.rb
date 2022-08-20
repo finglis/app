@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: %i[ show edit update destroy ]
+  before_action :set_line_item, only: %i[ show update destroy ]
 
   # GET /line_items or /line_items.json
   def index
@@ -25,8 +25,8 @@ class LineItemsController < ApplicationController
   def create
     @line_item = LineItem.new(line_item_params)
     @items = Item.all
+    @sale = Sale.find(line_item_params[:sale_id])
     
-
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to sale_url(line_item_params[:sale_id]), notice: "Line item was successfully created." }
@@ -41,13 +41,8 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1 or /line_items/1.json
   def update
     respond_to do |format|
-      if @line_item.update(line_item_params)
-        format.html { redirect_to line_item_url(@line_item), notice: "Line item was successfully updated." }
-        format.json { render :show, status: :ok, location: @line_item }
-      else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
     end
   end
 
