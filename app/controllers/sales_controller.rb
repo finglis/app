@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :set_sale, only: %i[ show edit update destroy ]
+  before_action :set_sale, only: %i[ show edit update destroy request_finance ]
 
   # GET /Sales or /Sales.json
   def index
@@ -22,6 +22,8 @@ class SalesController < ApplicationController
 
   # GET /Sales/1/edit
   def edit
+    @customers = Customer.all
+    @stores = Store.all
   end
 
   # POST /Sales or /Sales.json
@@ -62,10 +64,17 @@ class SalesController < ApplicationController
     end
   end
 
+  def request_finance
+    # insert logic to check finance should be approved
+    sleep 3
+
+    render :json => {approved: [true, false, true, true].sample}
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sale
-      @sale = Sale.find(params[:id])
+      @sale = Sale.find(params[:id] || params[:sale_id])
     end
 
     # Only allow a list of trusted parameters through.

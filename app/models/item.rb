@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0}
   has_many :line_items, inverse_of: :item
 
+  after_commit :check_low_stock
+
   def price_for(quantity)
     case offer
       when "no_offer"
@@ -17,6 +19,16 @@ class Item < ApplicationRecord
         return price * adjusted_quantity
       else
         throw new Error("Unknown offer")
+    end
+  end
+
+  private
+
+  LOW_STOCK_THRESHOLD = 5
+
+  def check_low_stock
+    if quantity < LOW_STOCK_THRESHOLD && quantity_was >= LOW_STOCK_THRESHOLD
+      puts "Send email"
     end
   end
 end

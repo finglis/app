@@ -77,7 +77,15 @@
         <div class="card-body text-dark">
           <p>
              Store Total Sales
-             £<%= Sale.all.map(&:total_price).sum%>
+             £<%= @total_sales%>
+          </p>
+          <p>
+             Store Total Sales Today
+             £<%= @total_sales_today%>
+          </p>
+          <p>
+             Store most popular Item
+             <%= @most_popular_item&.name%>
           </p>
           <%= link_to "New Sale", new_sale_path %>
 

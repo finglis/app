@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :customers do
   end
   resources :sales do
+    get :request_finance
   end  
   resources :articles do
     resources :comments
