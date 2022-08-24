@@ -1,0 +1,41 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#financeModal" id="financeModalButton">
+  Request Finance
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="financeModal" tabindex="-1" aria-labelledby="financeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="financeModalLabel">Finance Request Sumbission</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        The request for finance has been passed to the central system, please wait on this screen for a confirmation of acceptance.
+      </div>
+      <div class="modal-footer">
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+$(function(){
+    $('#financeModal').on('show.bs.modal', function(){
+        var myModal = $(this);
+        const btn = document.getElementById('financeModalButton');
+        clearTimeout(myModal.data('hideInterval'));
+        myModal.data('hideInterval', setTimeout(function(){
+            myModal.modal('hide');
+            btn.textContent = "Finance Approved";
+            btn.className = "btn btn-outline-success disabled";
+        }, 4000));
+
+    });
+});
+</script>

@@ -1,49 +1,94 @@
 
-<h1>Dashboard</h1>
+<div class="container">
+  <h1>DE-Store Dashboard</h1>
 
-
-<h2>Inventory</h2>
-<p>List of items currently used at this store</p>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Item Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Offer</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-
-    <tr>
-      <th scope="row"><%= link_to item.name, item %></th>
-      <td><%= item.price%></td>
-      <td><%= item.quantity %></td>
-      <td><%= item.offer %></td>
-    </tr>
+  <% @items.each do |item| %>
+    <% if item.quantity < 5 %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong><%= item.name %></strong> only has <%= item.quantity%> left in stock.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <% end %>
-
-  </tbody>
-</table>
-
-<%= link_to "New Item", new_item_path %>
-
-<h2>Customers</h2>
-<p>List of current customers</p>
-<ul>
-  <% @customers.each do |customer| %>
-    <li>     
-      <p> <%= link_to customer.id, customer %>, Loyalty : <%= customer.loyalty %></p>
-    </li>
   <% end %>
-</ul>
+  
+      <div class="card border-dark mb-3">
+      <div class="card-header">Inventory</div>
+      <div class="card-body text-dark">
+        <p class="card-text">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Item Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Offer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @items.each do |item| %>
 
-<%= link_to "New Customer", new_customer_path %>
+              <tr>
+                <th scope="row"><%= link_to item.name, item %></th>
+                <td>£<%= item.price%></td>
+                <td><%= item.quantity %></td>
+                <td><%= item.offer %></td>
+              </tr>
+              <% end %>
 
-<%= link_to "New Sale", new_sale_path %>
+            </tbody>
+          </table>
+        </p>
+        <%= link_to "New Item", new_item_path %>
 
-<p>
-Store Total Sales
-<%= Sale.all.map(&:total_price).sum%>
-</p>
+      </div>
+    </div>
+
+      <div class="card border-dark mb-3">
+        <div class="card-header">Customers</div>
+        <div class="card-body text-dark">
+          <p class="card-text">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Customer ID</th>
+                  <th scope="col">Loyalty Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @customers.each do |customer| %>
+
+                <tr>
+                  <th scope="row"><%= link_to customer.id, customer %></th>
+                  <td><%= customer.loyalty %></td>
+                </tr>
+                <% end %>
+
+              </tbody>
+            </table>
+          </p>
+          
+          <%= link_to "New Customer", new_customer_path %>
+
+        </div>
+      </div>
+
+            <div class="card border-dark mb-3">
+        <div class="card-header">Shop Dashboard</div>
+        <div class="card-body text-dark">
+          <p>
+             Store Total Sales
+             £<%= Sale.all.map(&:total_price).sum%>
+          </p>
+          <%= link_to "New Sale", new_sale_path %>
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+</div>

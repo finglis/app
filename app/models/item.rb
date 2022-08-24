@@ -11,7 +11,7 @@ class Item < ApplicationRecord
       when "no_offer"
         return price * quantity
       when "buy_one_get_one_free"
-        return price * (quanity.to_f / 2).ceil
+        return price * (quantity.to_f / 2).ceil
       when "three_for_two"
         adjusted_quantity = (((quantity/ 3).floor * 2) + (quantity % 3))
         return price * adjusted_quantity

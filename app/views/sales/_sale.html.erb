@@ -8,9 +8,32 @@
     <strong>Store:</strong>
     <%= Store.find(sale.store_id).name %>
   </p>
-
+  Shopping Cart
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
     <% sale.line_items.each do |l| %>
-    <p><%= Item.find(l.item_id).name %> <%= l.quantity %> <%= l.total_price_at_sale_time %></p>
+    <tr>
+      <th scope="row"><%= Item.find(l.item_id).name %></th>
+      <td>£<%= l.item.price%></td>
+      <td><%= l.quantity %></td>
+      <td>£<%= l.total_price_at_sale_time %></td>
+    </tr>
     <% end %>
-    total: <%= sale.total_price%>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td>Total: £<%= sale.total_price%></td>
+    </tr>
+
+  </tbody>
+  </table>
 </div>

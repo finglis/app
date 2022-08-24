@@ -1,18 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<div class="container card">
+  <div class="card-body">
+    <h5 class="card-title">Sale</h5>
+    <p style="color: green"><%= notice %></p>
 
-<%= render @sale %>
+    <%= render @sale %>
 
-<div>
-<%# show sale line items %>
+    <div>
 
-</div>
+    <%# show sale line items %>
 
-  <%= link_to "Create Line Item", new_line_item_path(sale_id: @sale.id) %>
+    </div>
+
+      <%= link_to "Add Line Item", new_line_item_path(sale_id: @sale.id) %>
 
 
-<div>
-  <%= link_to "Edit this sale", edit_sale_path(@sale) %> |
-  <%= link_to "Back to sales", sales_path %>
+    <div>
+      <%= link_to "Edit this sale", edit_sale_path(@sale) %> |
+      <%= link_to "Back to sales", sales_path %>
+      <%= render "modal" %>
 
-  <%= button_to "Destroy this sale", @sale, method: :delete %>
+      <%= button_to "Destroy this sale", @sale, method: :delete %>
+    </div>
+  </div>
 </div>
