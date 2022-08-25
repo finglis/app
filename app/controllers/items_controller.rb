@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  
+  http_basic_authenticate_with name: "admin", password: "123456", only: :edit
+  
   def index
     #if @items is used then display all the items
     @items = Item.all
